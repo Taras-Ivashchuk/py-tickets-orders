@@ -93,7 +93,7 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
     pagination_class = None
 
     def get_queryset(self):
-        if self.action in "list":
+        if self.action == "list":
             self.queryset = (
                 self.queryset.select_related("cinema_hall", "movie")
                 .prefetch_related("tickets")
@@ -142,7 +142,7 @@ class OrderViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self) -> QuerySet[Order]:
         queryset = Order.objects.filter(
-            user__username__icontains=self.request.user
+            user=self.request.user
         )
         if self.action in ("retrieve", "list"):
             queryset = queryset.prefetch_related(
