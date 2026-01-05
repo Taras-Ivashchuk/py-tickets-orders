@@ -1,7 +1,6 @@
 from typing import Type
 
-from django.db.models import QuerySet, F
-from django.db.models import Count
+from django.db.models import QuerySet, F, Count
 from rest_framework import viewsets
 from rest_framework.serializers import Serializer
 
